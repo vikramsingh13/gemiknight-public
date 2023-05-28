@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
+    private WeaponWand wand;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        wand = GameObject.FindGameObjectWithTag("WeaponWand").GetComponent<WeaponWand>();
     }
 
     // Update is called once per frame
@@ -26,5 +27,22 @@ public class Player : MonoBehaviour
 
         //move
         rb.velocity = movement;
+    }
+
+    //use the equipped weapon's attack
+    public virtual void UseAttack()
+    {
+        if (wand.CanAttack)
+        {
+            wand.UseAttack(transform.position);
+            wand.CanAttack = false;
+            StartCoroutine(ResetAttack());
+        }
+    }
+
+    private IEnumerator ResetAttack()
+    {
+        yield return new WaitForSeconds(wand.AttackCooldown * Time.deltaTime);
+        wand.CanAttack = true;
     }
 }

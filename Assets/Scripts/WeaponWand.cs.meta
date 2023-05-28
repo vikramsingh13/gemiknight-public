@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 8594b091d3fbf7147a71a58f24e44e01
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fireBoltPrefab: {fileID: 3183789417569984820, guid: 6486b90540dc09e4181cf97114717e49, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
