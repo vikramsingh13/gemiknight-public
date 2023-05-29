@@ -45,4 +45,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(wand.AttackCooldown * Time.deltaTime);
         wand.CanAttack = true;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>());
+        }
+    }
 }

@@ -22,7 +22,6 @@ public class WeaponWand : Weapon
     public override void UseAttack(Vector3 attackDirection)
     {
         base.UseAttack(attackDirection);
-        Debug.Log(" wand was used! " + attackDirection);
 
         //instantiate the fire bolt prefab
         GameObject fireBoltObject = Instantiate(fireBoltPrefab, attackDirection, Quaternion.identity);
