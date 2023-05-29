@@ -6,7 +6,7 @@ using System;
 public class BlobBlue : Blob
 {
     public float _moveSpeedBlueBlob = 3f;
-    public float _healthBlueBlob = 1000f;
+    public float _healthBlueBlob = 10000f;
     public float _directionChangeIntervalBlueBlob = 500f;
     public Vector2 newMovement;
 
@@ -26,6 +26,7 @@ public class BlobBlue : Blob
     protected override void Start()
     {
         base.Start();
+        Health = _healthBlueBlob;
         base.DirectionChangeInterval = _directionChangeIntervalBlueBlob * Time.deltaTime;
         GetNewMovement();
     }
@@ -42,7 +43,6 @@ public class BlobBlue : Blob
         {
             if (base.MoveDistance > base.MoveDistanceLimit)
             {
-                Debug.Log(" move dist " + base.MoveDistance);
                 GetOriginMovement();
             } else
             {

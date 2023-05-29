@@ -99,4 +99,18 @@ public class Blob : MonoBehaviour
         float deltaY = _currentPosition.y - _initialPosition.y;
         _moveDistance = Mathf.Sqrt(deltaX * deltaX + deltaY * deltaY);
     }
+
+    //checks if it gets hit by player 
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Projectile"))
+        {
+            Health -= 100f;
+            // Code to handle the collision with the projectile
+            Debug.Log("Projectile hit the enemy! rem health " + Health);
+
+            // Destroy the projectile
+            Destroy(other.gameObject);
+        }
+    }
 }
