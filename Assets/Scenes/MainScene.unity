@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTag: Player
   edgeThreshold: 2
-  smoothTime: 1
+  smoothTime: 0.25
   offset: {x: 0, y: 5, z: -10}
   mainCamera: {fileID: 0}
 --- !u!1 &1631506994
