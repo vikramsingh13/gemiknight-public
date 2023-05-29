@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public string playerTag = "Player"; // Tag of the player GameObject
-    public float edgeThreshold = 3f; // Threshold distance from the screen edge to trigger camera movement
-    public float smoothTime = 1f;//smoothens the camera movement
-    public Vector3 offset = new Vector3(0, 3, -10);//offset will be used to define a position above and behind the target when camera moves
+    public float edgeThreshold = 2f; // Threshold distance from the screen edge to trigger camera movement
+    public float smoothTime = .25f;//smoothens the camera movement
+    public Vector3 offset = new Vector3(0, 5, -10);//offset will be used to define a position above and behind the target when camera moves
 
     private Transform target; // Reference to the player's transform
     private Vector3 initialOffset; // Initial offset between the camera and player
@@ -25,6 +25,7 @@ public class CameraFollow : MonoBehaviour
         if (playerObject != null)
         {
             target = playerObject.transform;
+            offset = transform.position - target.position;
         }
         else
         {
@@ -40,6 +41,7 @@ public class CameraFollow : MonoBehaviour
         {
             if (Vector2.Distance(target.position, transform.position) > edgeThreshold)
             {
+                offset = transform.position - target.position;
                 //cam moves above and behind the target by offset
                 Vector3 targetPosition = target.TransformPoint(offset);
                 transform.position = Vector3.SmoothDamp(

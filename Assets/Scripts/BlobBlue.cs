@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class BlobBlue : Blob
 {
     public float _moveSpeedBlueBlob = 3f;
-    public float _healthBlueBlob = 1000f;
+    public float _maxHealthBlueBlob = 1000f;
     public float _directionChangeIntervalBlueBlob = 500f;
     public Vector2 newMovement;
+    public Slider healthBar;
 
     public override float MoveSpeed
     {
@@ -20,7 +22,8 @@ public class BlobBlue : Blob
     protected override void Start()
     {
         base.Start();
-        base.Health = _healthBlueBlob;
+        base.MaxHealth = _maxHealthBlueBlob;
+        base.HealthBar = healthBar;
         base.DirectionChangeInterval = _directionChangeIntervalBlueBlob * Time.deltaTime;
         GetNewMovement();
     }

@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Blob : MonoBehaviour
 {
     protected Rigidbody2D rb;
 
     private float _moveSpeed = 5f;
-    private float _health = 1000f;
+    private float _currentHealth = 1000f;
+    private float _maxHealth = 1000f;
     private float _directionChangeInterval = 100f;
     private float _lastDirectionUpdate = 0f;
     private Vector2 _initialPosition;
     private Vector2 _currentPosition;
     private float _moveDistanceLimit = 5f;
     private float _moveDistance;
+    private Slider _healthBar;
 
     public virtual float MoveSpeed
     {
@@ -21,10 +24,16 @@ public class Blob : MonoBehaviour
         set { _moveSpeed = value; }
     }
 
-    public virtual float Health
+    public virtual float CurrentHealth
     {
-        get { return _health; }
-        set { _health = value; }
+        get { return _currentHealth; }
+        set { _currentHealth = value; }
+    }
+
+    public virtual float MaxHealth
+    {
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
     }
 
     public virtual float DirectionChangeInterval
@@ -61,6 +70,12 @@ public class Blob : MonoBehaviour
     {
         get { return _moveDistance; }
         set { _moveDistance = value; }
+    }
+
+    public virtual Slider HealthBar
+    {
+        get { return _healthBar; }
+        set { _healthBar = value; }
     }
 
     // Start is called before the first frame update
@@ -104,8 +119,9 @@ public class Blob : MonoBehaviour
     //helper to check for health every update
     private void HealthCheck()
     {
-        if(Health <= 0)
+        if(CurrentHealth <= 0)
         {
+            Destroy(HealthBar.gameObject);
             Destroy(this.gameObject);
         }
     }
@@ -113,13 +129,20 @@ public class Blob : MonoBehaviour
     //reduces health for now
     public void ReduceHealth(float hitStrength)
     {
-        if(Health - hitStrength > 0)
+        if(CurrentHealth - hitStrength > 0)
         {
-            Health -= hitStrength;
+            CurrentHealth -= hitStrength;
         } else
         {
-            Health = 0;
+            CurrentHealth = 0;
         }
-        Debug.Log("current health " +  Health);
+        Debug.Log("current health " +  CurrentHealth);
+        OnHealthChange();
+    }
+
+    //sets the health bar slider as the percentage of health left
+    public virtual void OnHealthChange()
+    {
+        HealthBar.value = CurrentHealth / MaxHealth;
     }
 }
