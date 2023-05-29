@@ -22,4 +22,16 @@ public class ProjectileFireBolt : Projectile
     {
         base.Fire();
     }
+
+    //checks if it gets hit by player 
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<BlobBlue>().ReduceHealth(500);
+
+            // Destroy the projectile
+            Destroy(this.gameObject);
+        }
+    }
 }

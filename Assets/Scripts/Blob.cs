@@ -74,6 +74,7 @@ public class Blob : MonoBehaviour
     protected virtual void Update()
     {
         _currentPosition = transform.position;
+        HealthCheck();
         UpdateDistance();
     }
 
@@ -100,17 +101,25 @@ public class Blob : MonoBehaviour
         _moveDistance = Mathf.Sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
-    //checks if it gets hit by player 
-    public void OnTriggerEnter2D(Collider2D other)
+    //helper to check for health every update
+    private void HealthCheck()
     {
-        if (other.CompareTag("Projectile"))
+        if(Health <= 0)
         {
-            Health -= 100f;
-            // Code to handle the collision with the projectile
-            Debug.Log("Projectile hit the enemy! rem health " + Health);
-
-            // Destroy the projectile
-            Destroy(other.gameObject);
+            Destroy(this.gameObject);
         }
+    }
+
+    //reduces health for now
+    public void ReduceHealth(float hitStrength)
+    {
+        if(Health - hitStrength > 0)
+        {
+            Health -= hitStrength;
+        } else
+        {
+            Health = 0;
+        }
+        Debug.Log("current health " +  Health);
     }
 }

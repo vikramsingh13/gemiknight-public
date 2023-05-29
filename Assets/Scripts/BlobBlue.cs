@@ -6,7 +6,7 @@ using System;
 public class BlobBlue : Blob
 {
     public float _moveSpeedBlueBlob = 3f;
-    public float _healthBlueBlob = 10000f;
+    public float _healthBlueBlob = 1000f;
     public float _directionChangeIntervalBlueBlob = 500f;
     public Vector2 newMovement;
 
@@ -16,17 +16,11 @@ public class BlobBlue : Blob
         set { _moveSpeedBlueBlob = value; }
     }
 
-    public override float Health
-    {
-        get { return _healthBlueBlob; }
-        set { _healthBlueBlob = value; }
-    }
-
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        Health = _healthBlueBlob;
+        base.Health = _healthBlueBlob;
         base.DirectionChangeInterval = _directionChangeIntervalBlueBlob * Time.deltaTime;
         GetNewMovement();
     }

@@ -313,7 +313,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.18, y: -0.12}
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeedBlueBlob: 3
-  _healthBlueBlob: 10000
+  _healthBlueBlob: 1000
   _directionChangeIntervalBlueBlob: 500
   newMovement: {x: 0, y: 0}
 --- !u!4 &1613466595
