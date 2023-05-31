@@ -15,4 +15,13 @@ public class EventManager : MonoBehaviour
     {
         
     }
+
+    //logs events
+    //takes event entity action target [optional value]
+    public virtual void LogEvent(string eventName, string entity, string action, string target, float value)
+    {
+        //for now we will Debug log it, later save it in local storage
+        Debug.Log(eventName + " " + entity + " " + action + " " + target + " " 
+            + (value != null ? value + "." : "."));
+    }
 }

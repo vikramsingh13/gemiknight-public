@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : PickableItem
 {
     private bool _canAttack = true;
     private float _attackCooldown = 1f;

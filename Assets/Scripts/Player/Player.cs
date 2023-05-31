@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     public float moveSpeed = 5f;
 
@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        base.Name = "zPoc";
         wand = GameObject.FindGameObjectWithTag("WeaponWand").GetComponent<WeaponWand>();
     }
 

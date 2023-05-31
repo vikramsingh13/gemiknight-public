@@ -9,7 +9,7 @@ public class WeaponWand : Weapon
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(" prefab loaded " +  fireBoltPrefab);
+        base.Name = "Wand";
     }
 
     // Update is called once per frame
