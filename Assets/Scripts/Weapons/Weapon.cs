@@ -5,7 +5,8 @@ using UnityEngine;
 public class Weapon : PickableItem
 {
     private bool _canAttack = true;
-    private float _attackCooldown = 1f;
+    public float _attackCooldown = 50f;
+    private float _weaponStrength;
 
     public virtual bool CanAttack
     {
@@ -17,6 +18,12 @@ public class Weapon : PickableItem
     {
         get { return _attackCooldown; }
         set { _attackCooldown = value; }
+    }
+
+    public virtual float WeaponStrength
+    {
+        get { return _weaponStrength; }
+        set { _weaponStrength = value; }
     }
 
     // Start is called before the first frame update
@@ -35,4 +42,6 @@ public class Weapon : PickableItem
     {
         Debug.Log(" attack used! ");
     }
+
+
 }

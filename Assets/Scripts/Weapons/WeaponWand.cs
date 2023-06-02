@@ -10,6 +10,9 @@ public class WeaponWand : Weapon
     void Start()
     {
         base.Name = "Wand";
+        base.LevelRequired = 10;
+        base.AttackCooldown = 100f;
+        base.WeaponStrength = 500;
     }
 
     // Update is called once per frame
@@ -21,12 +24,9 @@ public class WeaponWand : Weapon
     //use wand attack
     public override void UseAttack(Vector3 attackDirection)
     {
-        base.UseAttack(attackDirection);
-
         //instantiate the fire bolt prefab
         GameObject fireBoltObject = Instantiate(fireBoltPrefab, attackDirection, Quaternion.identity);
         ProjectileFireBolt fireBolt = fireBoltObject.GetComponent<ProjectileFireBolt>();
-
         if(fireBolt != null)
         {
             fireBolt.Fire();

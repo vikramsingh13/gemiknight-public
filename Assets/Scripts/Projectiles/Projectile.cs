@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
             _currentPosition = transform.position;
             _moveDistance = Vector3.Distance(_initialPosition, _currentPosition);
 
-            Destroy(gameObject, 1);
+            Destroy(gameObject, ProjectileRange);
         }
     }
 
@@ -54,7 +54,6 @@ public class Projectile : MonoBehaviour
     public virtual void Fire()
     {
         _isFired = true;
-        Debug.Log(" Projectile was fired! ");
         //calculate current mouse pointer position
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;

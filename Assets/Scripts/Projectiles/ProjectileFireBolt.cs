@@ -8,7 +8,7 @@ public class ProjectileFireBolt : Projectile
     void Start()
     {
         base.ProjectileSpeed = 10f;
-        base.ProjectileRange = 5f;
+        base.ProjectileRange = .5f;
     }
 
     // Update is called once per frame

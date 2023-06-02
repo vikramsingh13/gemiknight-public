@@ -9,6 +9,8 @@ public class PickableItem : Item
     private bool _isDropped = false;
     private int _stackSize = 1;
     private GameObject _player; //will be used to get player's inventory, and for logging
+    private int _levelRequired = 1;
+    private bool _isEquippable = true;
 
     public virtual bool IsStackable
     {
@@ -32,6 +34,18 @@ public class PickableItem : Item
     {
         get { return _stackSize; }
         set { _stackSize = value; }
+    }
+
+    public virtual int LevelRequired
+    {
+        get { return _levelRequired; }
+        set { _levelRequired = value; }
+    }
+
+    public virtual bool IsEquippable
+    {
+        get { return _isEquippable; }
+        set { _isEquippable = value; }
     }
 
     // Start is called before the first frame update
@@ -83,7 +97,6 @@ public class PickableItem : Item
             this.gameObject.SetActive(true);
         } else
         {
-            Debug.Log(" display called ");
             this.gameObject.SetActive(false);
         }
     }
@@ -98,6 +111,8 @@ public class PickableItem : Item
             {
                 PlayerInventory inv = _player.GetComponent<PlayerInventory>();
                 Pickup(inv, StackSize);
+                Player _ = _player.GetComponent<Player>();
+                _.EquipWeapon(this.gameObject.GetComponent<Weapon>());
             }
         }
     }
@@ -105,7 +120,6 @@ public class PickableItem : Item
     //log pickup
     public virtual void LogPickup()
     {
-        Debug.Log(" log pickup called ");
         Player _ = _player.GetComponent<Player>();
         base.LogEvent("PICKUP", _.Name, "picked up", base.Name, StackSize);
     }
@@ -117,6 +131,24 @@ public class PickableItem : Item
         base.LogEvent("DROP", _.Name, "dropped", base.Name, StackSize);
     }
 
+    //log equip
+    public virtual void LogEquip()
+    {
+        Player _ = _player.GetComponent<Player>();
+        base.LogEvent("EQUIP", _.Name, "equipped", base.Name, StackSize);
+    }
 
+    //log unequip
+    public virtual void LogUnequip()
+    {
+        Player _ = _player.GetComponent<Player>();
+        base.LogEvent("UNEQUIP", _.Name, "unequipped", base.Name, StackSize);
+    }
 
+    //log cant equip
+    public virtual void LogCantEquip()
+    {
+        Player _ = _player.GetComponent<Player>();
+        base.LogEvent("CAN'T EQUIP", _.Name, "can't equip weapon. Player level not high enough.", base.Name, LevelRequired);
+    }
 }

@@ -31,8 +31,6 @@ public class CameraFollow : MonoBehaviour
         {
             Debug.LogWarning("Player GameObject not found with tag: " + playerTag);
         }
-
-        Debug.Log("camera size: " + mainCamera.orthographicSize * mainCamera.aspect);
     }
 
     private void LateUpdate()

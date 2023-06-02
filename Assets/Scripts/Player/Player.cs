@@ -7,13 +7,28 @@ public class Player : Entity
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
-    private WeaponWand wand;
+    private Weapon _equippedWeapon;
+    private PlayerInventory _inventory;
+
+    public virtual Weapon EquippedWeapon
+    {
+        get { return _equippedWeapon; }
+        set { _equippedWeapon = value; }
+    }
+
+    public virtual PlayerInventory Inventory
+    {
+        get { return this._inventory; }
+        set { this._inventory = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         base.Name = "zPoc";
-        wand = GameObject.FindGameObjectWithTag("WeaponWand").GetComponent<WeaponWand>();
+        base.Level = 12;
+        Inventory = this.GetComponent<PlayerInventory>();
+
     }
 
     // Update is called once per frame
@@ -33,18 +48,19 @@ public class Player : Entity
     //use the equipped weapon's attack
     public virtual void UseAttack()
     {
-        if (wand.CanAttack)
+
+        if (EquippedWeapon != null && EquippedWeapon.CanAttack)
         {
-            wand.UseAttack(transform.position);
-            wand.CanAttack = false;
+            EquippedWeapon.UseAttack(this.transform.position);
+            EquippedWeapon.CanAttack = false;
             StartCoroutine(ResetAttack());
         }
     }
 
     private IEnumerator ResetAttack()
     {
-        yield return new WaitForSeconds(wand.AttackCooldown * Time.deltaTime);
-        wand.CanAttack = true;
+        yield return new WaitForSeconds(EquippedWeapon.AttackCooldown * Time.deltaTime);
+        EquippedWeapon.CanAttack = true;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -54,4 +70,31 @@ public class Player : Entity
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>());
         }
     }
+
+    public virtual bool EquipWeapon(Weapon weapon)
+    {   if( weapon == null || weapon.IsEquippable == false ) { return false; }
+
+        if (weapon.LevelRequired <= base.Level)
+        {
+            if( EquippedWeapon != null)
+            {
+                bool _ = Inventory.Add(EquippedWeapon, EquippedWeapon.StackSize);
+                if( _ == false)
+                {
+                    EquippedWeapon.LogUnequip();
+                    EquippedWeapon.Drop();
+                }
+            }
+            EquippedWeapon = weapon;
+            weapon.LogEquip();
+            return true;
+        }
+        else
+        {
+            weapon.LogCantEquip();
+            return false;
+        }
+    }
+
+
 }

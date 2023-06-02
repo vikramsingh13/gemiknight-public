@@ -6,11 +6,18 @@ public class Entity : MonoBehaviour
 {
     private string _name = string.Empty;
     private EventManager _eventManager;
+    private int _level = 1;
 
     public virtual string Name
     {
         get { return _name; }
         set { _name = value; }
+    }
+
+    public virtual int Level
+    {
+        get { return _level; }
+        set { _level = value; }
     }
 
     // Start is called before the first frame update
@@ -39,7 +46,7 @@ public class Entity : MonoBehaviour
         {
             Debug.LogWarning("EventManager object not found in the scene.");
         }
-        Debug.Log(_eventManager == null);
+
         if (_eventManager != null)
         {
             _eventManager.LogEvent(eventName, entity, action, target, value);
