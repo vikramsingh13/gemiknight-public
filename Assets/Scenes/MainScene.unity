@@ -531,6 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2126449324}
+  - component: {fileID: 2126449328}
   - component: {fileID: 2126449326}
   - component: {fileID: 2126449325}
   - component: {fileID: 2126449327}
@@ -592,6 +593,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251a425e3358e244d84ff1953112bee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2126449328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126449322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e01343ab3dd944fa485f4b24e838a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upKey: 119
+  _leftKey: 97
+  _downKey: 115
+  _rightKey: 100
+  _jumpKey: 32
+  _sprintKey: 304
+  _key1: 49
+  _key2: 50
+  _key3: 51
+  _key4: 52
+  _attackKey: 323
+  _mouseRightButton: 324
+  _escapeKey: 27
+  _qKey: 113
+  _eKey: 101
+  _rKey: 114
+  _fKey: 102
+  _tKey: 116
 --- !u!1 &2143627420
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +648,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143627420}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -654,6 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
+  controlSettings: {fileID: 0}
 --- !u!1001 &7473417896490239572
 PrefabInstance:
   m_ObjectHideFlags: 0

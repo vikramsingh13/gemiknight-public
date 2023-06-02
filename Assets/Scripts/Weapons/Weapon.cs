@@ -33,9 +33,9 @@ public class Weapon : PickableItem
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        base.Update();
     }
 
     public virtual void UseAttack(Vector3 attackDirection)

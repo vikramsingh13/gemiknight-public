@@ -11,9 +11,9 @@ public class Item : Entity
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-
+        base.Update();
     }
 
     public virtual void Delete()

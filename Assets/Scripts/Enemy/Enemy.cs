@@ -79,14 +79,20 @@ public class Enemy : Entity
     }
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual new void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected virtual new void Update()
     {
+        base.Update();
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         CurrentPosition = transform.position;
         HealthCheck();
         UpdateDistance();
@@ -112,6 +118,10 @@ public class Enemy : Entity
     //updates the distance between current and origin/initial
     private void UpdateDistance()
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         float deltaX = _currentPosition.x - _initialPosition.x;
         float deltaY = _currentPosition.y - _initialPosition.y;
         _moveDistance = Mathf.Sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -130,6 +140,10 @@ public class Enemy : Entity
     //reduces health for now
     public void ReduceHealth(float hitStrength)
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         if (CurrentHealth - hitStrength > 0)
         {
             CurrentHealth -= hitStrength;

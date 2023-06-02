@@ -57,13 +57,21 @@ public class PickableItem : Item
     // Update is called once per frame
     void Update()
     {
-        
+        base.Update();
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
     }
 
     //expects the player game object's inventory component
     //returns true if player inv picked it up or false o/w
     public virtual bool Pickup(PlayerInventory inv, int quantity)
     {
+        if (base.IsPaused)
+        {
+            return false; //skip when game is paused
+        }
         if (inv.Add(this, quantity))
         {
             IsDropped = false;
@@ -82,6 +90,10 @@ public class PickableItem : Item
     //both player inv and mobs can use this
     public virtual bool Drop()
     {
+        if (base.IsPaused)
+        {
+            return false; //skip when game is paused
+        }
         IsDropped = true;
         LogDrop();
         Display();
@@ -92,6 +104,10 @@ public class PickableItem : Item
     //hides when not displayed 
     public override void Display()
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         if (IsDropped)
         {
             this.gameObject.SetActive(true);
@@ -104,6 +120,10 @@ public class PickableItem : Item
     //deals with collision with player
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         if (other.CompareTag("Player"))
         {
             _player = other.gameObject;

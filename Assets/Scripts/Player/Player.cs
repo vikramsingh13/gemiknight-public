@@ -23,8 +23,9 @@ public class Player : Entity
     }
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         base.Name = "zPoc";
         base.Level = 12;
         Inventory = this.GetComponent<PlayerInventory>();
@@ -32,8 +33,13 @@ public class Player : Entity
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
+        base.Update();
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         //horizontal and vertical input
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
@@ -48,7 +54,10 @@ public class Player : Entity
     //use the equipped weapon's attack
     public virtual void UseAttack()
     {
-
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         if (EquippedWeapon != null && EquippedWeapon.CanAttack)
         {
             EquippedWeapon.UseAttack(this.transform.position);
@@ -65,6 +74,10 @@ public class Player : Entity
 
     void OnCollisionEnter(Collision collision)
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         if (collision.gameObject.tag == "Projectile")
         {
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>());
@@ -72,7 +85,12 @@ public class Player : Entity
     }
 
     public virtual bool EquipWeapon(Weapon weapon)
-    {   if( weapon == null || weapon.IsEquippable == false ) { return false; }
+    {
+        if (base.IsPaused)
+        {
+            return false; //skip when game is paused
+        }
+        if ( weapon == null || weapon.IsEquippable == false ) { return false; }
 
         if (weapon.LevelRequired <= base.Level)
         {

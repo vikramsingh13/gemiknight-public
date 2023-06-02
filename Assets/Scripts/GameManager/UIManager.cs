@@ -12,15 +12,18 @@ public class UIManager : MonoBehaviour
     public Button mainButtonExit;
     public GameController gameController;
     public VisualElement mainMenu;
+    public ControlSettings controlSettings;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = GameObject.FindWithTag("GameManager").GetComponent<GameController>();
+        controlSettings = GameObject.FindWithTag("GameManager").GetComponent<ControlSettings>();
         mainMenu = GetComponent<UIDocument>().rootVisualElement;
         
         if (mainMenu != null && gameController != null)
         {
+            mainMenu.style.display = DisplayStyle.None;
             mainButtonResume = mainMenu.Q<Button>("MenuButtonResume");
             mainButtonControls = mainMenu.Q<Button>("MenuButtonControls");
             mainButtonSound = mainMenu.Q<Button>("MenuButtonSound");
@@ -33,15 +36,23 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("is paused in uimanager: " + gameController.IsPaused);
+        if (gameController.IsPaused)
+        {
+            mainMenu.style.display = DisplayStyle.Flex;
+        }
+
+        if(!gameController.IsPaused)
+        {
+            mainMenu.style.display = DisplayStyle.None;
+        }
     }
 
     //resume game
     void ResumeButtonPressed()
     {
         Debug.Log("Ui manager: mainMenu: resume pressed");
-        gameController.ResumeGame();
-        mainMenu.style.display = DisplayStyle.None;
+        gameController.IsPaused = false;
     }
 
     void ControlsButtonPressed()

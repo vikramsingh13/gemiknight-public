@@ -15,11 +15,19 @@ public class ProjectileFireBolt : Projectile
     protected override void Update()
     {
         base.Update();
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
     }
 
     //fires the prefab
     public override void Fire()
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         base.Fire();
     }
 

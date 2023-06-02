@@ -16,14 +16,18 @@ public class WeaponWand : Weapon
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        base.Update();
     }
 
     //use wand attack
     public override void UseAttack(Vector3 attackDirection)
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         //instantiate the fire bolt prefab
         GameObject fireBoltObject = Instantiate(fireBoltPrefab, attackDirection, Quaternion.identity);
         ProjectileFireBolt fireBolt = fireBoltObject.GetComponent<ProjectileFireBolt>();
