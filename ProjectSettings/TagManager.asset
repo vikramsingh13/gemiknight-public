@@ -8,6 +8,7 @@ TagManager:
   - WeaponWand
   - EnemyProjectile
   - GameManager
+  - UIMenuMain
   layers:
   - Default
   - TransparentFX
