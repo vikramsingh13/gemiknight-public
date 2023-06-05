@@ -367,10 +367,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1103871169}
+  - component: {fileID: 1103871170}
   - component: {fileID: 1103871168}
   m_Layer: 5
   m_Name: UIRuntime
-  m_TagString: UIInventory
+  m_TagString: UIRuntime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,6 +407,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1103871170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103871167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1471442cc7c1df45bd658fe3576bc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1631506994
 GameObject:
   m_ObjectHideFlags: 0

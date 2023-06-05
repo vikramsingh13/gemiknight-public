@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class MenuUIController : MonoBehaviour
 {
     public Button mainButtonResume;
     public Button mainButtonControls;

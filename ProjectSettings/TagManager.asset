@@ -9,7 +9,7 @@ TagManager:
   - EnemyProjectile
   - GameManager
   - UIMenuMain
-  - UIInventory
+  - UIRuntime
   layers:
   - Default
   - TransparentFX
