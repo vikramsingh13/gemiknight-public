@@ -11,6 +11,10 @@ public class PickableItem : Item
     private GameObject _player; //will be used to get player's inventory, and for logging
     private int _levelRequired = 1;
     private bool _isEquippable = true;
+    //todo implement _isPickable and _isEquippedByPlayer
+    //when true, touches player, player picks it up
+    //when false, if touches player and not equipped by player, does dmg to player
+    //when false, touches player and equipped by player, does nothing. 
 
     public virtual bool IsStackable
     {

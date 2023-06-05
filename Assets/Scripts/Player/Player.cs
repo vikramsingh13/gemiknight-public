@@ -9,6 +9,9 @@ public class Player : Entity
     public Rigidbody2D rb;
     private Weapon _equippedWeapon;
     private PlayerInventory _inventory;
+    public Vector2 PointerInput;
+    private WeaponParent _weaponParent;
+    private SpriteRenderer _equippedWeaponRenderer;
 
     public virtual Weapon EquippedWeapon
     {
@@ -29,7 +32,14 @@ public class Player : Entity
         base.Name = "zPoc";
         base.Level = 12;
         Inventory = this.GetComponent<PlayerInventory>();
+        PointerInput = GetPointerInput();
+        _equippedWeaponRenderer = GameObject.FindWithTag("PlayerWeapon").GetComponent<SpriteRenderer>();
 
+    }
+
+    private void Awake()
+    {
+        _weaponParent = GetComponentInChildren<WeaponParent>();
     }
 
     // Update is called once per frame
@@ -49,6 +59,10 @@ public class Player : Entity
 
         //move
         rb.velocity = movement;
+
+        //set pointerinput to mouse position
+        PointerInput = GetPointerInput();
+        _weaponParent.WeaponPointerPosition = PointerInput;
     }
 
     //use the equipped weapon's attack
@@ -105,6 +119,7 @@ public class Player : Entity
             }
             EquippedWeapon = weapon;
             weapon.LogEquip();
+            ChangeEquippedWeaponSprite(weapon);
             return true;
         }
         else
@@ -112,6 +127,19 @@ public class Player : Entity
             weapon.LogCantEquip();
             return false;
         }
+    }
+
+    private void ChangeEquippedWeaponSprite(Weapon weapon)
+    {
+        //update the equipped weapon sprite
+        _equippedWeaponRenderer.sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+    }
+
+    private Vector2 GetPointerInput()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
 
