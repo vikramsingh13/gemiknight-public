@@ -111,6 +111,7 @@ public class Player : Entity
         {
             return false; //skip when game is paused
         }
+        Debug.Log(" weapon in player equipweapon " + weapon.GetType());
         if ( weapon == null || weapon.IsEquippable == false ) { return false; }
 
         if (weapon.LevelRequired <= base.Level)
@@ -127,6 +128,7 @@ public class Player : Entity
             EquippedWeapon = weapon;
             EquippedWeapon.LogEquip();
             ChangeEquippedWeaponSprite(weapon);
+            StartCoroutine(ResetAttack());
             return true;
         }
         else

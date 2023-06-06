@@ -7,9 +7,9 @@ using UnityEngine.Scripting; //needed for manually adding slots to inv in ui bui
 public class InventorySlot : VisualElement
 {
     public Image Icon;
-    public string ItemGuid = "";
     private GameObject _heldItem = null;
     //private bool _hasItem = false;
+    private Player _player;
 
     public virtual GameObject HeldItem
     {
@@ -27,7 +27,7 @@ public class InventorySlot : VisualElement
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class InventorySlot : VisualElement
         
     }
 
-    public InventorySlot()
+    public InventorySlot(Player player)
     {
         // Initialize Icon with an empty or transparent sprite to avoid null ref error
         Icon = new Image { sprite = Sprite.Create(Texture2D.blackTexture, new Rect(0, 0, 1, 1), Vector2.zero) };
@@ -45,6 +45,11 @@ public class InventorySlot : VisualElement
         //add uss style properties to the elements
         //this is for the icon the slot will hold
         Icon.AddToClassList("slotIcon");
+
+        _player = player;
+
+        //Mouseclick event listener
+        RegisterCallback<PointerDownEvent>(OnPointerDown);
     }
 
     //takes the gameobject as item
@@ -82,6 +87,44 @@ public class InventorySlot : VisualElement
         Sprite sprite = Sprite.Create(texture, rect, pivot);
 
         return sprite;
+    }
+
+    private void OnPointerDown(PointerDownEvent evt)
+    {
+        Debug.Log("point down in Inv Slot " + evt.button);
+        //Not the left mouse button or this is an empty slotIn
+        if (evt.button != 0 || HeldItem == null)
+        {
+            return;
+        }
+
+        Debug.Log("point down in Inv Slot " + HeldItem.GetType());
+        if (HeldItem != null)
+        {
+            // Get all script components of the desired type
+            Component[] scriptComponents = HeldItem.GetComponents<Component>();
+            Debug.Log("point down in Inv Slot scriptcomp " + scriptComponents);
+            // Iterate through the script components and filter based on the name
+            foreach (Component component in scriptComponents)
+            {
+                Debug.Log("point down in Inv Slot compo " + scriptComponents);
+                if (component.GetType().Name.Contains("Weapon"))
+                {
+                    //for now we equip the weapon, later, a context menu will drop on right click
+                    if (_player.EquipWeapon((Weapon)component))
+                    {
+                        //Clear the sprite
+                        Icon.sprite = GetEmptySprite();
+
+                        HeldItem = null;
+
+                    }
+                }
+            }
+        }
+
+        //Start the drag
+        //InventoryUIController.StartDrag(evt.position, this);
     }
 }
 

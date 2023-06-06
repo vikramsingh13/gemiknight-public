@@ -7,6 +7,7 @@ public class InventoryUIController : MonoBehaviour
 {
     private VisualElement _root;
     private VisualElement _slotContainer;
+    private Player _player;
 
     public List<InventorySlot> InventoryItems = new List<InventorySlot>();
 
@@ -24,6 +25,9 @@ public class InventoryUIController : MonoBehaviour
 
     private void Awake()
     {
+        //store the ref for player that will be passed to the inv slots
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
         //store root from UI document
         _root = GameObject.FindGameObjectWithTag("UIRuntime").GetComponent<UIDocument>().rootVisualElement;
 
@@ -37,7 +41,7 @@ public class InventoryUIController : MonoBehaviour
         for (int i = 0; i < 21; i++)
         {
             Debug.Log("slots being added in inv ui cont");
-            InventorySlot slot = new InventorySlot();
+            InventorySlot slot = new InventorySlot(_player);
 
             InventoryItems.Add(slot);
 

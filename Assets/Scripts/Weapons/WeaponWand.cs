@@ -36,6 +36,5 @@ public class WeaponWand : Weapon
         {
             fireBolt.Fire();
         }
-
     }
 }

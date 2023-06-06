@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : PickableItem
 {
-    private bool _canAttack = true;
+    private bool _canAttack = false;
     public float _attackCooldown = 50f;
     private float _weaponStrength;
 
