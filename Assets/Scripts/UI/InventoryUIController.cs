@@ -37,14 +37,32 @@ public class InventoryUIController : MonoBehaviour
         for (int i = 0; i < 21; i++)
         {
             Debug.Log("slots being added in inv ui cont");
-            InventorySlot item = new InventorySlot();
+            InventorySlot slot = new InventorySlot();
 
-            InventoryItems.Add(item);
+            InventoryItems.Add(slot);
 
-            _slotContainer.Add(item);
+            _slotContainer.Add(slot);
         }
 
         Debug.Log("inv ui cont slot container after slot add " + _slotContainer);
 
     }
+
+    //adds the new items 
+    public void Add(GameObject item)
+    {
+        //iterate through the InventorySlots and add the item to first available slot
+        foreach(InventorySlot slot in InventoryItems)
+        {
+            if(slot.HeldItem == null)
+            {
+                slot.HoldItem(item);
+                return;
+            }
+        }
+
+        return;
+    }
+
+    //Drop item can be directly programmed in InventorySlot DropItem
 }

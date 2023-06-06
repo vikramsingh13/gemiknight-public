@@ -13,6 +13,7 @@ public class WeaponWand : Weapon
         base.LevelRequired = 10;
         base.AttackCooldown = 100f;
         base.WeaponStrength = 500;
+        base.AssociatedGameObject = gameObject;
     }
 
     // Update is called once per frame

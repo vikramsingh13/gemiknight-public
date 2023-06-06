@@ -36,7 +36,6 @@ public class MenuUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("is paused in uimanager: " + gameController.IsPaused);
         if (gameController.IsPaused)
         {
             mainMenu.style.display = DisplayStyle.Flex;

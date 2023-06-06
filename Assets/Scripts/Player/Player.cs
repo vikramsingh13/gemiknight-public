@@ -12,6 +12,7 @@ public class Player : Entity
     public Vector2 PointerInput;
     private WeaponParent _weaponParent;
     private SpriteRenderer _equippedWeaponRenderer;
+    private int _playerInventorySize;
 
     public virtual Weapon EquippedWeapon
     {
@@ -21,8 +22,14 @@ public class Player : Entity
 
     public virtual PlayerInventory Inventory
     {
-        get { return this._inventory; }
-        set { this._inventory = value; }
+        get { return _inventory; }
+        set { _inventory = value; }
+    }
+
+    public virtual int PlayerInventorySize
+    {
+        get { return _playerInventorySize; }
+        set { _playerInventorySize = value; }
     }
 
     // Start is called before the first frame update
@@ -34,7 +41,7 @@ public class Player : Entity
         Inventory = this.GetComponent<PlayerInventory>();
         PointerInput = GetPointerInput();
         _equippedWeaponRenderer = GameObject.FindWithTag("PlayerWeapon").GetComponent<SpriteRenderer>();
-
+        PlayerInventorySize = 21;
     }
 
     private void Awake()
@@ -110,15 +117,15 @@ public class Player : Entity
         {
             if( EquippedWeapon != null)
             {
-                bool _ = Inventory.Add(EquippedWeapon, EquippedWeapon.StackSize);
-                if( _ == false)
-                {
-                    EquippedWeapon.LogUnequip();
-                    EquippedWeapon.Drop();
-                }
+                //weapon will be replaced by currently equipped weapon in the inventory
+                Inventory.SwapGear(weapon, EquippedWeapon);
+                EquippedWeapon.LogUnequip();
             }
+            
+            //equipped weapon either started as null, or is null now after swap
+            //set it to the new weapon
             EquippedWeapon = weapon;
-            weapon.LogEquip();
+            EquippedWeapon.LogEquip();
             ChangeEquippedWeaponSprite(weapon);
             return true;
         }
