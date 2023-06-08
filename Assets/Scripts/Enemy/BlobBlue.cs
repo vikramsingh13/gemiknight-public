@@ -6,7 +6,7 @@ using System;
 
 public class BlobBlue : Blob
 {
-    public float _moveSpeedBlueBlob = 3f;
+    public float _moveSpeedBlueBlob = 1.5f;
     public float _maxHealthBlueBlob = 1000f;
     public float _directionChangeIntervalBlueBlob = 500f;
     public Vector2 newMovement;
@@ -32,6 +32,10 @@ public class BlobBlue : Blob
     protected override void Update()
     {
         base.Update();
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         base.DirectionChangeInterval = _directionChangeIntervalBlueBlob * Time.deltaTime;
 
         transform.Translate(newMovement * MoveSpeed * Time.deltaTime);
@@ -56,6 +60,10 @@ public class BlobBlue : Blob
     //init newMovement direction and reset LastDirectionUpdate to 0
     private void GetNewMovement()
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         newMovement = base.CalculateMovementVector();
         transform.Translate(newMovement * MoveSpeed * Time.deltaTime);
         base.LastDirectionUpdate = 0f;
@@ -65,6 +73,10 @@ public class BlobBlue : Blob
     //after hitting a boundary or going over move distance limit from origin
     private void GetOriginMovement()
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         newMovement = base.GetOriginMovementVector(newMovement);
         transform.Translate(newMovement * MoveSpeed * Time.deltaTime);
         base.LastDirectionUpdate = 0f;

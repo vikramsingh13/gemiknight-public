@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : PickableItem
 {
-    private bool _canAttack = true;
+    private bool _canAttack = false;
     public float _attackCooldown = 50f;
     private float _weaponStrength;
 
@@ -29,13 +29,13 @@ public class Weapon : PickableItem
     // Start is called before the first frame update
     void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        base.Update();
     }
 
     public virtual void UseAttack(Vector3 attackDirection)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Entity
 {
     private bool _isFired = false;
     private float _projectileSpeed = 10f;
@@ -39,6 +39,11 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        base.Update();
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         if (_isFired)
         {
             transform.position += (targetDirection - transform.position).normalized * ProjectileSpeed * Time.deltaTime;
@@ -46,13 +51,33 @@ public class Projectile : MonoBehaviour
             _currentPosition = transform.position;
             _moveDistance = Vector3.Distance(_initialPosition, _currentPosition);
 
-            Destroy(gameObject, ProjectileRange);
+            StartCoroutine(DestroyDelayed(ProjectileRange));
         }
+    }
+
+    //stops projectile from being destroyed when game is paused
+    private IEnumerator DestroyDelayed(float delay)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < delay)
+        {
+            if (!base.IsPaused)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
     //fires the prefab
     public virtual void Fire()
     {
+        if (base.IsPaused)
+        {
+            return; //skip when game is paused
+        }
         _isFired = true;
         //calculate current mouse pointer position
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

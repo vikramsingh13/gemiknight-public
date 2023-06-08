@@ -1,0 +1,48 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIRuntimeStyles.uss?fileID=7433441132597879392&amp;guid=fd3a8a9ef3610474cace7252685bf56f&amp;type=3#UIRuntimeStyles" />
+    <ui:VisualElement name="UIBackground" style="height: 100%; width: 100%; justify-content: center; align-items: center; flex-grow: 0;">
+        <ui:VisualElement name="PlayerStatsBackground" style="position: absolute; left: 0; top: 0; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; width: 25%; height: 25%;">
+            <ui:VisualElement name="PlayerPortraitContainer" style="width: 100%; height: 100%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:VisualElement name="PlayerPortrait" style="background-color: rgba(251, 133, 0, 0); border-left-color: rgb(251, 133, 0); border-right-color: rgb(251, 133, 0); border-top-color: rgb(251, 133, 0); border-bottom-color: rgb(251, 133, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; border-top-left-radius: 50%; border-bottom-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; width: 35%; height: 98%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="PlayerStatsContainer" style="width: 100%; height: 100%; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+                <ui:ProgressBar value="22" title="my-progress" name="PlayerHealth" />
+                <ui:ProgressBar value="22" title="my-progress" name="UltimateCharge" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="InventoryBackground" style="position: absolute; bottom: 0; right: 0; width: 22%; height: 100%; flex-direction: column; align-items: center; justify-content: flex-end;">
+            <ui:VisualElement name="InventoryContainer" style="flex-grow: 0; width: 100%; height: auto; background-color: rgb(2, 48, 71); border-left-color: rgb(33, 158, 188); border-right-color: rgb(33, 158, 188); border-top-color: rgb(33, 158, 188); border-bottom-color: rgb(33, 158, 188); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; min-width: 100%; min-height: 50%;">
+                <ui:Label text="Inventory" display-tooltip-when-elided="true" name="InventoryHeader" style="flex-grow: 0; font-size: 20px; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); align-items: auto; justify-content: flex-start; -unity-text-align: upper-center;" />
+                <ui:VisualElement name="InventorySlotContainer" class="slotContainer" style="min-width: 100%; min-height: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ActionBarBackground" style="bottom: 0; height: 25%; right: auto; width: 100%; position: absolute; left: 0; flex-grow: 1; align-items: center; justify-content: flex-end;">
+            <ui:VisualElement name="ShortcutBackground" style="width: 50%; height: 50px;">
+                <ui:VisualElement name="ExpLevel" style="width: 20%; height: 100%; align-items: flex-start; justify-content: center;">
+                    <ui:Label text="LVL:" display-tooltip-when-elided="true" name="ExpLabel" style="background-color: rgb(33, 158, 188); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 100%; width: 100%; transform-origin: center; rotate: 0; translate: 0 0; font-size: 20%; white-space: nowrap; -unity-text-align: middle-left; color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ExpBar" style="width: 50%; height: 20px; background-color: rgb(0, 0, 0); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
+            <ui:VisualElement name="ActionBar" style="width: 50%; justify-content: space-between; align-items: center; flex-direction: row; background-color: rgb(2, 48, 71); border-left-color: rgb(33, 158, 188); border-right-color: rgb(33, 158, 188); border-top-color: rgb(33, 158, 188); border-bottom-color: rgb(33, 158, 188); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; height: 150px;">
+                <ui:VisualElement name="ActionSlot" class="actionSlot" style="width: 16%;">
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+                <ui:VisualElement name="ActionSlot" class="actionSlot" style="width: 16%;">
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+                <ui:VisualElement name="ActionSlot" class="actionSlot" style="width: 16%;">
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+                <ui:VisualElement name="ActionSlot" class="actionSlot" style="width: 16%;">
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+                <ui:VisualElement name="ActionSlot" class="actionSlot" style="width: 16%;">
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+                <ui:VisualElement name="ActionSlot" class="actionSlot" style="width: 16%;">
+                    <ui:IMGUIContainer />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
