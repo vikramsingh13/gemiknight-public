@@ -8,6 +8,7 @@ public class InventoryUIController : MonoBehaviour
     private VisualElement _root;
     private VisualElement _slotContainer;
     private Player _player;
+    private ControlSettings _controlSettings;
 
     public List<InventorySlot> InventoryItems = new List<InventorySlot>();
 
@@ -27,6 +28,8 @@ public class InventoryUIController : MonoBehaviour
     {
         //store the ref for player that will be passed to the inv slots
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        //ref of the control settings from GameManager
+        _controlSettings = GameObject.FindWithTag("GameManager").GetComponent<ControlSettings>();
 
         //store root from UI document
         _root = GameObject.FindGameObjectWithTag("UIRuntime").GetComponent<UIDocument>().rootVisualElement;

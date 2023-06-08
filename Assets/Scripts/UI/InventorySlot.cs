@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Scripting; //needed for manually adding slots to inv in ui builder
+//using UnityEngine.Scripting; // only needed for manually adding slots to inv in ui builder
+using UnityEngine.EventSystems;
 
 public class InventorySlot : VisualElement
 {
@@ -10,6 +11,7 @@ public class InventorySlot : VisualElement
     private GameObject _heldItem = null;
     //private bool _hasItem = false;
     private Player _player;
+    private ControlSettings _controlSettings;
 
     public virtual GameObject HeldItem
     {
@@ -92,7 +94,7 @@ public class InventorySlot : VisualElement
     private void OnPointerDown(PointerDownEvent evt)
     {
         Debug.Log("point down in Inv Slot " + evt.button);
-        //Not the left mouse button or this is an empty slotIn
+        //Not the left mouse button or this is an empty inv slot
         if (evt.button != 0 || HeldItem == null)
         {
             return;

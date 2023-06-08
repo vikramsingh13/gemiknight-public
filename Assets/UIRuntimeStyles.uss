@@ -1,20 +1,35 @@
 .slotIcon {
-    width: calc(20% - 10px);
-    height: 50px;
-    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
     flex-grow: 1;
+    flex-shrink: 0;
     border-width: 1px;
     border-color: rgb(33, 158, 188);
     border-radius: 10px;
     margin: 2px;
+    margin-left: 8px;
 }
 
 .slotContainer {
     flex-grow: 1;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
+    height: 50%;
+}
+
+.actionSlot {
+    width: 20%;
+    background-color: rgba(38, 64, 204, 0);
     height: 100%;
-    overflow: hidden;
+    border-left-color: rgb(33, 158, 188);
+    border-right-color: rgb(33, 158, 188);
+    border-top-color: rgb(33, 158, 188);
+    border-bottom-color: rgb(33, 158, 188);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
 }

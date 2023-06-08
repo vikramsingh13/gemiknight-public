@@ -63,6 +63,7 @@ public class PickableItem : Item
     void Start()
     {
         IsDropped = true;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -174,14 +175,14 @@ public class PickableItem : Item
     public virtual void LogEquip()
     {
         Player _ = _player.GetComponent<Player>();
-        base.LogEvent("EQUIP", _.Name, "equipped", base.Name, StackSize);
+        base.LogEvent("EQUIP", _.Name, "equipped", base.Name, base.Level);
     }
 
     //log unequip
     public virtual void LogUnequip()
     {
         Player _ = _player.GetComponent<Player>();
-        base.LogEvent("UNEQUIP", _.Name, "unequipped", base.Name, StackSize);
+        base.LogEvent("UNEQUIP", _.Name, "unequipped", base.Name, base.Level);
     }
 
     //log cant equip

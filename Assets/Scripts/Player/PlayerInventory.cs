@@ -76,7 +76,6 @@ public class PlayerInventory : MonoBehaviour
         if (Inventory.Count < _player.PlayerInventorySize)
         {
             Inventory.Add(item);
-            Debug.Log(item.AssociatedGameObject);
             _invUIController.Add(item.AssociatedGameObject);
             item.LogPickup(originalStackSize);
             return true;

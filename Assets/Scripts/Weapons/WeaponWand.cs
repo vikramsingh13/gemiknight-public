@@ -10,6 +10,7 @@ public class WeaponWand : Weapon
     void Start()
     {
         base.Name = "Wand";
+        base.Level = 10;
         base.LevelRequired = 10;
         base.AttackCooldown = 100f;
         base.WeaponStrength = 500;
